@@ -1,0 +1,17 @@
+.global _ZN5RiscV13pushRegistersEv
+.type _ZN5RiscV13pushRegistersEv, @function
+_ZN5RiscV13pushRegistersEv:
+    addi sp, sp, -256 //moving sp to an end
+    .irp index, 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
+    sd x\index, \index * 8(sp) //storing data from registers
+    .endr
+    ret
+
+.global _ZN5RiscV12popRegistersEv
+.type _ZN5RiscV12popRegistersEv, @function
+_ZN5RiscV12popRegistersEv:
+    .irp index, 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
+    ld x\index, \index * 8(sp) //loading data to registers
+    .endr
+    addi sp, sp, 256 //moving sp back to beginning
+    ret
